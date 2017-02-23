@@ -1,0 +1,32 @@
+{
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 6,
+      "ecmaFeatures": {
+        "modules": true
+      }
+    },
+    "globals": {
+      "loader": true,
+      "Symbol": true
+    },
+    "rules": {
+      "valid-jsdoc": ["error", {
+        "requireParamDescription": false,
+        "requireReturnDescription": false,
+        "prefer": { "return": "return"},
+        "preferType": {
+            "String": "String",
+            "Number": "Number",
+            "Boolean": "Boolean",
+            "object": "Object",
+            "function": "Function"
+        }
+      }]
+    },
+    "extends": "eslint:recommended"
+}
