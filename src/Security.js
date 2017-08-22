@@ -1,15 +1,9 @@
-import Layer from '@hyper/http/lib/Layer'
-import Defaults from '@hyper/config/lib/Defaults';
+import Layer from '@hyper/http/lib/Layer';
 
 
-class Security extends Layer{
-  constructor({handler, name, config, path, policy}={}){
-    super({handler, name, config, path})
-
-    /**
-     * Security Policy
-     */
-    this.setPolicy(policy);
+class SecurityLayer extends Layer{
+  constructor(config){
+    super(config);
   }
 
   /**
@@ -17,15 +11,15 @@ class Security extends Layer{
    *
    * @param {Object} policy
    */
-  setPolicy(policy={}){
-    invariant(
-      isObject(policy),
-      `Security.setPolicy(..): expect object got: ${typeOf(policy)}`
-    );
-    this.policy = new Config(defaults, policy);
+  // setPolicy(policy={}){
+  //   invariant(
+  //     isObject(policy),
+  //     `Security.setPolicy(..): expect object got: ${typeOf(policy)}`
+  //   );
+  //   this.policy = new Config(defaults, policy);
 
-    return this;
-  }
+  //   return this;
+  // }
 
   handler(req, res, next){
     res.setHeader(
@@ -58,10 +52,10 @@ class Security extends Layer{
       'nosniff'
     );
 
-    res.setHeader(
-      this.cspHeaderName(req.userAgent),
-      this.cspValue
-    );
+    // res.setHeader(
+    //   this.cspHeaderName(req.userAgent),
+    //   this.cspValue
+    // );
 
     next();
   }
@@ -69,7 +63,7 @@ class Security extends Layer{
 
   /**
    * Parse CPS diectives to valid Header string
-   * @param  {object} cps
+   * @param  {Object} cps
    * @return {string}
    */
   parseCSP(cps) {
@@ -115,9 +109,6 @@ class Security extends Layer{
   }
 }
 
-
-}
-
-export default Security;
+export default SecurityLayer;
 
 
