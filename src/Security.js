@@ -1,4 +1,5 @@
 import Layer from '@hyper/http/Layer';
+
 import dnsPrefetchControl from "./directives/dnsPrefetchControl";
 import frameOptions from "./directives/frameOptions";
 import strictTransportSecurity from "./directives/strictTransportSecurity";
@@ -8,11 +9,12 @@ import contentTypeOptions from "./directives/contentTypeOptions";
 import contentSecurityPolicy from "./directives/contentSecurityPolicy";
 
 class SecurityLayer extends Layer{
-  constructor(config){
+  constructor(config, policy){
     super(config);
 
-    this.addDefault({
-      prefetchControl: {
+    //TODO, cannot add defaults after config is set,
+    this.addDefaults({
+      dnsPrefetchControl: {
         default: {
           allow: true
         },
@@ -29,7 +31,12 @@ class SecurityLayer extends Layer{
         default: {
           maxAge: 15552000,
           includeSubdomains: true,
-          setIf: undefined
+        },
+        type: "Object"
+      },
+      downloadOptions:{
+        default: {
+          enabled: true
         },
         type: "Object"
       }
