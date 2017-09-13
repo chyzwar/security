@@ -5,7 +5,7 @@ import className from "@utility/utils/className";
  * X-DNS-Prefetch Control
  * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control
  *
- * @param  {Config}   config
+ * @param  {Config} config
  * @return {Function}
  */
 function dnsPrefetchControl(config){
@@ -25,7 +25,7 @@ function dnsPrefetchControl(config){
   }
   else {
     throw new Error(
-      `dnsPrefetchControl(..): allow expected to be Boolean, got: ${className(allow)}`
+      `Security.dnsPrefetchControl(..): allow expected to be Boolean, got: ${className(allow)}`
     );
   }
 }
